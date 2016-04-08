@@ -23,7 +23,6 @@
 			}
 			#links{
 				position: relative;
-				z-index: 200; /* The links need to be above the image. */
 			}
 			#links a{
 				color: #000;
@@ -79,6 +78,7 @@
 			window.onload = function() { 
 				// Display full page when everything is loaded (because this script is loaded last).
 				document.getElementsByTagName("body")[0].style.display = "inline"; 
+				document.getElementById("links").style.zIndex = "200" // The links need to be above the image. 
 				
 				// Assign cover image object to cover variable.
 				cover = document.getElementById("cover");
