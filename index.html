@@ -23,6 +23,7 @@
 				/*top: -1800px;*/
 			}
 			#links{
+				z-index: 0;
 				position: relative;
 			}
 			#links a{
@@ -100,7 +101,6 @@
 			}
 
 			function moveCover(e) {   
-			    document.getElementById("links").style.zIndex = "200";
 			
 			    CurX = (window.Event) ? e.pageX : event.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
 			    CurY = (window.Event) ? e.pageY : event.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
@@ -112,6 +112,8 @@
 
 			    cover.style.left = coverCenterX + "px";
 			    cover.style.top = coverCenterY + "px";
+			    
+			    document.getElementById("links").style.zIndex = "200";
 			}
     
 	        function showRemaining() {
