@@ -19,8 +19,8 @@
 				z-index: 100; /* Image is over everything except the links. */
 				position: fixed;
 				display: block;
-				left: -1500px;
-				top: -1800px;
+				/*left: -1500px;*/
+				/*top: -1800px;*/
 			}
 			#links{
 				display:none;
@@ -101,7 +101,7 @@
 			}
 
 			function moveCover(e) {   
-			    document.getElementById("links").style.display: "inline";
+			    document.getElementById("links").style.display = "inline";
 			
 			    CurX = (window.Event) ? e.pageX : event.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
 			    CurY = (window.Event) ? e.pageY : event.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
