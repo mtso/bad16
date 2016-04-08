@@ -23,7 +23,6 @@
 				/*top: -1800px;*/
 			}
 			#links{
-				display:none;
 				position: relative;
 			}
 			#links a{
@@ -33,12 +32,15 @@
 			#links a:hover{
 				text-decoration: underline;
 			}
+			.link{
+				display:none;
+			}
 		</style>
 	</head>
 	<body>
 		<div id="links">
-			<a href="http://facebook.com">Facebook</a>
-			<a href="http://eventbrite.com">Eventbrite</a>
+			<a class="link" href="http://facebook.com">Facebook</a>
+			<a class="link" href="http://eventbrite.com">Eventbrite</a>
 		</div>
 		<img id="cover" src="https://raw.githubusercontent.com/mtso/bad16/gh-pages/cover.png">
 		
@@ -101,7 +103,7 @@
 			}
 
 			function moveCover(e) {   
-			    document.getElementById("links").style.display = "inline-block";
+			    document.getElementsByClassName("link").style.display = "inline";
 			
 			    CurX = (window.Event) ? e.pageX : event.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
 			    CurY = (window.Event) ? e.pageY : event.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
