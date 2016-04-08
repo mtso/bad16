@@ -80,10 +80,14 @@
 			window.onload = function() { 
 				// Display full page when everything is loaded (because this script is loaded last).
 				document.getElementsByTagName("body")[0].style.display = "inline"; 
-				// document.getElementById("links").style.zIndex = "200" // The links need to be above the image. 
 				
+				// Hide cursor
+				document.body.style.cursor = 'none';
+
 				// Assign cover image object to cover variable.
 				cover = document.getElementById("cover");
+				
+				
 
 				showRemaining();
 				// Start Clock
