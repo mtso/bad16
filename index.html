@@ -23,6 +23,7 @@
 				top: -1500px;
 			}
 			#links{
+				display:none;
 				position: relative;
 			}
 			#links a{
@@ -100,6 +101,8 @@
 			}
 
 			function moveCover(e) {   
+			    document.getElementById("links").style.display: "inline";
+			
 			    CurX = (window.Event) ? e.pageX : event.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
 			    CurY = (window.Event) ? e.pageY : event.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
 
