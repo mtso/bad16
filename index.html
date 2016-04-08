@@ -66,16 +66,16 @@
 		<script type="text/javascript">
 			// Cover variables
 			var CurX;
-		    var CurY;
-		    var cover;
-		    var IE = document.all?true:false;
+			var CurY;
+			var cover;
+			var IE = document.all?true:false;
 
-		    // Timer constants
+		    	// Timer constants
 			var eventDate = new Date('04/15/2016 7:00 PM');
-	        var _second = 1000;
-	        var _minute = _second * 60;
-	        var _hour = _minute * 60;
-	        var _day = _hour * 24;
+	        	var _second = 1000;
+	        	var _minute = _second * 60;
+		        var _hour = _minute * 60;
+		        var _day = _hour * 24;
 
 			window.onload = function() { 
 				// Display full page when everything is loaded (because this script is loaded last).
@@ -120,31 +120,31 @@
 			    document.getElementById("links").style.zIndex = "200";
 			}
     
-	        function showRemaining() {
-	            var now = new Date();
-	            var timeLeft = eventDate - now;
-	            
-	            var days = Math.floor(timeLeft / _day);
-	            var hours = Math.floor((timeLeft % _day) / _hour);
-	            var minutes = Math.floor((timeLeft % _hour) / _minute);
-	            var seconds = Math.floor((timeLeft % _minute) / _second);
-	            
-	            // Display a 0 for single digit values
-	            if (days < 10) {
-	            	days = String("0" + days)
-	            }
-	            if (hours < 10) {
-	            	hours = String("0" + hours)
-	            }
-	            if (minutes < 10) {
-	            	minutes = String("0" + minutes)
-	            }
-	            if (seconds < 10) {
-	            	seconds = String("0" + seconds)
-	            }
-
-	            document.getElementById("countdown").innerHTML = days + ':' + hours + ':' + minutes + ':' + seconds;
-	        }
+		        function showRemaining() {
+		            var now = new Date();
+		            var timeLeft = eventDate - now;
+		            
+		            var days = Math.floor(timeLeft / _day);
+		            var hours = Math.floor((timeLeft % _day) / _hour);
+		            var minutes = Math.floor((timeLeft % _hour) / _minute);
+		            var seconds = Math.floor((timeLeft % _minute) / _second);
+		            
+		            // Display a 0 for single digit values
+		            if (days < 10) {
+		            	days = String("0" + days)
+		            }
+		            if (hours < 10) {
+		            	hours = String("0" + hours)
+		            }
+		            if (minutes < 10) {
+		            	minutes = String("0" + minutes)
+		            }
+		            if (seconds < 10) {
+		            	seconds = String("0" + seconds)
+		            }
+	
+		            document.getElementById("countdown").innerHTML = days + ':' + hours + ':' + minutes + ':' + seconds;
+		        }
 
 		</script>
 	</body>
