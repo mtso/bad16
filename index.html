@@ -19,11 +19,12 @@
 				z-index: 100; /* Image is over everything except the links. */
 				position: fixed;
 				display: block;
-
 			}
 			#links{
-				position: relative;
-				z-index: 200; /* The links need to be above the image. */
+				width: 100%;
+				z-index: 0;
+				position: absolute;
+				text-align: center;
 			}
 			#links a{
 				color: #000;
@@ -39,7 +40,7 @@
 			<a href="http://facebook.com">Facebook</a>
 			<a href="http://eventbrite.com">Eventbrite</a>
 		</div>
-		<img id="cover" src="cover.png">
+		<img id="cover" src="https://raw.githubusercontent.com/mtso/bad16/gh-pages/cover.png">
 		
 		<div id="timer">
 			<h1 id="countdown"></h1>
@@ -79,6 +80,7 @@
 			window.onload = function() { 
 				// Display full page when everything is loaded (because this script is loaded last).
 				document.getElementsByTagName("body")[0].style.display = "inline"; 
+				// document.getElementById("links").style.zIndex = "200" // The links need to be above the image. 
 				
 				// Assign cover image object to cover variable.
 				cover = document.getElementById("cover");
@@ -99,6 +101,7 @@
 			}
 
 			function moveCover(e) {   
+			
 			    CurX = (window.Event) ? e.pageX : event.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
 			    CurY = (window.Event) ? e.pageY : event.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
 
@@ -109,6 +112,8 @@
 
 			    cover.style.left = coverCenterX + "px";
 			    cover.style.top = coverCenterY + "px";
+			    
+			    document.getElementById("links").style.zIndex = "200";
 			}
     
 	        function showRemaining() {
