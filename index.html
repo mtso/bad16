@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> BAD 2016 </title>
+		<style>
+			body{
+				/* Display none makes sure that when the image hasn't loaded yet, 
+				   the other information isn't shown. */
+				display: none; 
+				margin: 0;
+
+				font: 4em serif;
+				text-align: center;
+			}
+			table{
+				display: inline-block;
+			}
+			img{
+				z-index: 100; /* Image is over everything except the links. */
+				position: fixed;
+				display: block;
+
+			}
+			#links{
+				position: relative;
+				z-index: 200; /* The links need to be above the image. */
+			}
+			#links a{
+				color: #000;
+				text-decoration: none;
+			}
+			#links a:hover{
+				text-decoration: underline;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="links">
+			<a href="http://facebook.com">Facebook</a>
+			<a href="http://eventbrite.com">Eventbrite</a>
+		</div>
+		<img id="cover" src="cover.png">
+		
+		<div id="timer">
+			<h1 id="countdown"></h1>
+			
+		</div>
+		<div id="table">
+			<table border="0">
+				<tr>
+					<th>Date</th>
+					<td>4/7/16</td>
+				</tr>
+				<tr>
+					<th>Time</th>
+					<td>7:00 PM</td>
+				</tr>
+				<tr>
+					<th>Attire</th>
+					<td>Formal</td>
+				</tr>
+			</table>
+		</div>
+
+		<script type="text/javascript">
+			// Cover variables
+			var CurX;
+		    var CurY;
+		    var cover;
+		    var IE = document.all?true:false;
+
+		    // Timer constants
+			var eventDate = new Date('04/15/2016 7:00 PM');
+	        var _second = 1000;
+	        var _minute = _second * 60;
+	        var _hour = _minute * 60;
+	        var _day = _hour * 24;
+
+			window.onload = function() { 
+				// Display full page when everything is loaded (because this script is loaded last).
+				document.getElementsByTagName("body")[0].style.display = "inline"; 
+				
+				// Assign cover image object to cover variable.
+				cover = document.getElementById("cover");
+
+				showRemaining();
+				// Start Clock
+				var timer = setInterval(showRemaining, 1000);
+
+				if(IE){
+			        CurX = window.event.clientX;
+			        CurY = window.event.clientY;
+			    } else {
+					if (window.captureEvents) {
+				        document.captureEvents(Event.MOUSEMOVE);
+				    }
+				    document.onmousemove = moveCover;
+				}
+			}
+
+			function moveCover(e) {   
+			    CurX = (window.Event) ? e.pageX : event.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
+			    CurY = (window.Event) ? e.pageY : event.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
+
+			    // cover.png is 3000 x 3000 px so to match the cursor with the center,
+			    // an offset is hardcoded to the cursor values
+			    var coverCenterX = CurX - 1500; 
+			    var coverCenterY = CurY - 1500;
+
+			    cover.style.left = coverCenterX + "px";
+			    cover.style.top = coverCenterY + "px";
+			}
+    
+	        function showRemaining() {
+	            var now = new Date();
+	            var timeLeft = eventDate - now;
+	            
+	            var days = Math.floor(timeLeft / _day);
+	            var hours = Math.floor((timeLeft % _day) / _hour);
+	            var minutes = Math.floor((timeLeft % _hour) / _minute);
+	            var seconds = Math.floor((timeLeft % _minute) / _second);
+	            
+	            // Display a 0 for single digit values
+	            if (days < 10) {
+	            	days = String("0" + days)
+	            }
+	            if (hours < 10) {
+	            	hours = String("0" + hours)
+	            }
+	            if (minutes < 10) {
+	            	minutes = String("0" + minutes)
+	            }
+	            if (seconds < 10) {
+	            	seconds = String("0" + seconds)
+	            }
+
+	            document.getElementById("countdown").innerHTML = days + ':' + hours + ':' + minutes + ':' + seconds;
+	        }
+
+		</script>
+	</body>
+</html>
