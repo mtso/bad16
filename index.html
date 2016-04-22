@@ -9,11 +9,12 @@
 				display: none; 
 				margin: 0;
 
-				font: 4em serif;
+				font: 4em verdana;
 				text-align: center;
 			}
 			table{
 				display: inline-block;
+				text-align: right;
 			}
 			img{
 				z-index: 100; /* Image is over everything except the links. */
@@ -25,6 +26,8 @@
 				z-index: 0;
 				position: absolute;
 				text-align: center;
+				font-family: verdana;
+				font-size: 20px;
 			}
 			#links a{
 				color: #000;
@@ -36,29 +39,28 @@
 		</style>
 	</head>
 	<body>
-		<div id="links">
-			<a href="http://facebook.com">Facebook</a>
-			<a href="http://eventbrite.com">Eventbrite</a>
-		</div>
+		
 		<img id="cover" src="https://raw.githubusercontent.com/mtso/bad16/gh-pages/cover.png">
 		
 		<div id="timer">
 			<h1 id="countdown"></h1>
 			
 		</div>
-		<div id="table">
-			<table border="0">
+		<div id="table" style="font-family:verdana;font-size:30px">>
+			<table border="0" align="right">
+				<col width="100">
+				<col width="150">
 				<tr>
 					<th>Date</th>
-					<td>4/7/16</td>
+					<td>4/30/16</td>
 				</tr>
 				<tr>
 					<th>Time</th>
-					<td>7:00 PM</td>
+					<td>2:30 PM</td>
 				</tr>
 				<tr>
 					<th>Attire</th>
-					<td>Formal</td>
+					<td>Semi-Formal/Formal</td>
 				</tr>
 			</table>
 		</div>
@@ -66,16 +68,16 @@
 		<script type="text/javascript">
 			// Cover variables
 			var CurX;
-			var CurY;
-			var cover;
-			var IE = document.all?true:false;
+		    var CurY;
+		    var cover;
+		    var IE = document.all?true:false;
 
-		    	// Timer constants
-			var eventDate = new Date('04/15/2016 7:00 PM');
-	        	var _second = 1000;
-	        	var _minute = _second * 60;
-		        var _hour = _minute * 60;
-		        var _day = _hour * 24;
+		    // Timer constants
+			var eventDate = new Date('04/30/2016 2:30 PM');
+	        var _second = 1000;
+	        var _minute = _second * 60;
+	        var _hour = _minute * 60;
+	        var _day = _hour * 24;
 
 			window.onload = function() { 
 				// Display full page when everything is loaded (because this script is loaded last).
@@ -120,31 +122,31 @@
 			    document.getElementById("links").style.zIndex = "200";
 			}
     
-		        function showRemaining() {
-		            var now = new Date();
-		            var timeLeft = eventDate - now;
-		            
-		            var days = Math.floor(timeLeft / _day);
-		            var hours = Math.floor((timeLeft % _day) / _hour);
-		            var minutes = Math.floor((timeLeft % _hour) / _minute);
-		            var seconds = Math.floor((timeLeft % _minute) / _second);
-		            
-		            // Display a 0 for single digit values
-		            if (days < 10) {
-		            	days = String("0" + days)
-		            }
-		            if (hours < 10) {
-		            	hours = String("0" + hours)
-		            }
-		            if (minutes < 10) {
-		            	minutes = String("0" + minutes)
-		            }
-		            if (seconds < 10) {
-		            	seconds = String("0" + seconds)
-		            }
-	
-		            document.getElementById("countdown").innerHTML = days + ':' + hours + ':' + minutes + ':' + seconds;
-		        }
+	        function showRemaining() {
+	            var now = new Date();
+	            var timeLeft = eventDate - now;
+	            
+	            var days = Math.floor(timeLeft / _day);
+	            var hours = Math.floor((timeLeft % _day) / _hour);
+	            var minutes = Math.floor((timeLeft % _hour) / _minute);
+	            var seconds = Math.floor((timeLeft % _minute) / _second);
+	            
+	            // Display a 0 for single digit values
+	            if (days < 10) {
+	            	days = String("0" + days)
+	            }
+	            if (hours < 10) {
+	            	hours = String("0" + hours)
+	            }
+	            if (minutes < 10) {
+	            	minutes = String("0" + minutes)
+	            }
+	            if (seconds < 10) {
+	            	seconds = String("0" + seconds)
+	            }
+
+	            document.getElementById("countdown").innerHTML = days + ':' + hours + ':' + minutes + ':' + seconds;
+	        }
 
 		</script>
 	</body>
