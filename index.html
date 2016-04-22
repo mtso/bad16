@@ -39,12 +39,13 @@
 		</style>
 	</head>
 	<body>
-		<audio autoplay loop preload="auto">
+		<audio autoplay loop preload="auto" id="badAudio">
 			<source src="badmusic_mobile.ogg" type="audio/ogg">
 			<source src="badmusic_mobile.wav" type="audio/wav">
 			<source src="badmusic.mp3" type="audio/mpeg">
 			Your browser does not support the audio tag.
 		</audio>
+		<!--<script></script>-->
 
 		<img id="cover" src="https://raw.githubusercontent.com/mtso/bad16/gh-pages/cover.png">
 		
@@ -72,18 +73,25 @@
 		</div>
 
 		<script type="text/javascript">
+			// Audio
+			var needMusicStart = true;
+			var badAudio = document.getElementById("badAudio")
+			badAudio.onplaying = function() {
+				needMusicStart = false;
+			}
+			
 			// Cover variables
 			var CurX;
-		    var CurY;
-		    var cover;
-		    var IE = document.all?true:false;
+		    	var CurY;
+		    	var cover;
+		    	var IE = document.all?true:false;
 
-		    // Timer constants
+		    	// Timer constants
 			var eventDate = new Date('04/30/2016 2:00 PM');
-	        var _second = 1000;
-	        var _minute = _second * 60;
-	        var _hour = _minute * 60;
-	        var _day = _hour * 24;
+	        	var _second = 1000;
+	        	var _minute = _second * 60;
+	        	var _hour = _minute * 60;
+	        	var _day = _hour * 24;
 
 			window.onload = function() { 
 				// Display full page when everything is loaded (because this script is loaded last).
@@ -126,33 +134,38 @@
 			    cover.style.top = coverCenterY + "px";
 			    
 			    document.getElementById("links").style.zIndex = "200";
+			    
+			    // Start Audio if need to
+			    if (needMusicStart) {
+			    	badAudio.play();
+			    }
 			}
     
-	        function showRemaining() {
-	            var now = new Date();
-	            var timeLeft = eventDate - now;
-	            
-	            var days = Math.floor(timeLeft / _day);
-	            var hours = Math.floor((timeLeft % _day) / _hour);
-	            var minutes = Math.floor((timeLeft % _hour) / _minute);
-	            var seconds = Math.floor((timeLeft % _minute) / _second);
-	            
-	            // Display a 0 for single digit values
-	            if (days < 10) {
-	            	days = String("0" + days)
-	            }
-	            if (hours < 10) {
-	            	hours = String("0" + hours)
-	            }
-	            if (minutes < 10) {
-	            	minutes = String("0" + minutes)
-	            }
-	            if (seconds < 10) {
-	            	seconds = String("0" + seconds)
-	            }
-
-	            document.getElementById("countdown").innerHTML = days + ':' + hours + ':' + minutes + ':' + seconds;
-	        }
+	        	function showRemaining() {
+		            var now = new Date();
+		            var timeLeft = eventDate - now;
+		            
+		            var days = Math.floor(timeLeft / _day);
+		            var hours = Math.floor((timeLeft % _day) / _hour);
+		            var minutes = Math.floor((timeLeft % _hour) / _minute);
+		            var seconds = Math.floor((timeLeft % _minute) / _second);
+		            
+		            // Display a 0 for single digit values
+		            if (days < 10) {
+		            	days = String("0" + days)
+		            }
+		            if (hours < 10) {
+		            	hours = String("0" + hours)
+		            }
+		            if (minutes < 10) {
+		            	minutes = String("0" + minutes)
+		            }
+		            if (seconds < 10) {
+		            	seconds = String("0" + seconds)
+		            }
+	
+		            document.getElementById("countdown").innerHTML = days + ':' + hours + ':' + minutes + ':' + seconds;
+	        	}
 
 		</script>
 	</body>
