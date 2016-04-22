@@ -47,7 +47,7 @@
 		</audio>
 		<!--<script></script>-->
 
-		<img id="cover" src="https://raw.githubusercontent.com/mtso/bad16/gh-pages/cover.png">
+		<img id="cover" onclick="startMusic()" src="https://raw.githubusercontent.com/mtso/bad16/gh-pages/cover.png">
 		
 		<div id="timer">
 			<h1 id="countdown"></h1>
@@ -75,10 +75,18 @@
 		<script type="text/javascript">
 			// Audio
 			var needMusicStart = true;
-			var badAudio = document.getElementById("badAudio")
+			var badAudio = document.getElementById("badAudio");
+			
 			badAudio.onplaying = function() {
 				needMusicStart = false;
 				console.log("Music started.");
+			}
+			
+			function startMusic() {
+			    // Start Audio if need to
+			    if (needMusicStart) {
+			    	badAudio.play();
+			    }
 			}
 			
 			// Cover variables
@@ -120,7 +128,7 @@
 				    document.onmousemove = moveCover;
 				}
 			}
-
+			
 			function moveCover(e) {   
 			
 			    CurX = (window.Event) ? e.pageX : event.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
@@ -136,10 +144,6 @@
 			    
 			    document.getElementById("links").style.zIndex = "200";
 			    
-			    // Start Audio if need to
-			    if (needMusicStart) {
-			    	badAudio.play();
-			    }
 			}
     
 	        	function showRemaining() {
