@@ -9,7 +9,7 @@
 				display: none; 
 				margin: 0;
 
-				font: 4em serif;
+				font: 4em 'Oswald',sans-serif;
 				text-align: center;
 			}
 			table{
@@ -19,11 +19,14 @@
 				z-index: 100; /* Image is over everything except the links. */
 				position: fixed;
 				display: block;
-
 			}
 			#links{
-				position: relative;
-				z-index: 200; /* The links need to be above the image. */
+				width: 100%;
+				z-index: 0;
+				position: absolute;
+				text-align: center;
+				font-family: 'Oswald',sans-serif;
+				font-size: 20px;
 			}
 			#links a{
 				color: #000;
@@ -35,29 +38,40 @@
 		</style>
 	</head>
 	<body>
+<<<<<<< HEAD
 		<div id="links">
 			<a href="http://facebook.com">Facebook</a>
 			<a href="http://eventbrite.com">Eventbrite</a>
 		</div>
+=======
+		<audio autoplay loop preload="auto" id="badAudio">
+			<source src="badmusic_mobile.ogg" type="audio/ogg">
+			<source src="badmusic_mobile.wav" type="audio/wav">
+			<source src="badmusic.mp3" type="audio/mpeg">
+			Your browser does not support the audio tag.
+		</audio>
+		<!--<script></script>-->
+
+>>>>>>> origin/gh-pages
 		<img id="cover" src="https://raw.githubusercontent.com/mtso/bad16/gh-pages/cover.png">
 		
 		<div id="timer">
 			<h1 id="countdown"></h1>
 			
 		</div>
-		<div id="table">
-			<table border="0">
+		<div id="table" style="font-family:'Oswald',sans-serif;font-size:30px">
+			<table border="0" cellpadding="10">
 				<tr>
-					<th>Date</th>
-					<td>4/7/16</td>
+					<th align="right">Date</th>
+					<td align="left">4/30/16</td>
 				</tr>
 				<tr>
-					<th>Time</th>
-					<td>7:00 PM</td>
+					<th align="right">Pick Up Time</th>
+					<td align="left">2:00 PM</td>
 				</tr>
 				<tr>
-					<th>Attire</th>
-					<td>Formal</td>
+					<th align="right">Attire</th>
+					<td align="left">Semi-Formal/Formal</td>
 				</tr>
 			</table>
 		</div>
@@ -65,24 +79,33 @@
 		<script type="text/javascript">
 			// Cover variables
 			var CurX;
-		    var CurY;
-		    var cover;
-		    var IE = document.all?true:false;
+		    	var CurY;
+		    	var cover;
+		    	var IE = document.all?true:false;
 
-		    // Timer constants
-			var eventDate = new Date('04/15/2016 7:00 PM');
-	        var _second = 1000;
-	        var _minute = _second * 60;
-	        var _hour = _minute * 60;
-	        var _day = _hour * 24;
+		    	// Timer constants
+			var eventDate = new Date('04/30/2016 2:00 PM');
+	        	var _second = 1000;
+	        	var _minute = _second * 60;
+	        	var _hour = _minute * 60;
+	        	var _day = _hour * 24;
 
 			window.onload = function() { 
 				// Display full page when everything is loaded (because this script is loaded last).
 				document.getElementsByTagName("body")[0].style.display = "inline"; 
 				
+				// Hide cursor
+				document.body.style.cursor = 'none';
+
 				// Assign cover image object to cover variable.
 				cover = document.getElementById("cover");
-
+				
+				// Audio trickery
+				var onClick = function() {
+					startMusic();
+				}
+				cover.addEventListener('click', onClick, false);
+				
 				showRemaining();
 				// Start Clock
 				var timer = setInterval(showRemaining, 1000);
@@ -97,8 +120,9 @@
 				    document.onmousemove = moveCover;
 				}
 			}
-
+			
 			function moveCover(e) {   
+			
 			    CurX = (window.Event) ? e.pageX : event.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
 			    CurY = (window.Event) ? e.pageY : event.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
 
@@ -109,33 +133,52 @@
 
 			    cover.style.left = coverCenterX + "px";
 			    cover.style.top = coverCenterY + "px";
+			    
+			    document.getElementById("links").style.zIndex = "200";
+			    
 			}
     
-	        function showRemaining() {
-	            var now = new Date();
-	            var timeLeft = eventDate - now;
-	            
-	            var days = Math.floor(timeLeft / _day);
-	            var hours = Math.floor((timeLeft % _day) / _hour);
-	            var minutes = Math.floor((timeLeft % _hour) / _minute);
-	            var seconds = Math.floor((timeLeft % _minute) / _second);
-	            
-	            // Display a 0 for single digit values
-	            if (days < 10) {
-	            	days = String("0" + days)
-	            }
-	            if (hours < 10) {
-	            	hours = String("0" + hours)
-	            }
-	            if (minutes < 10) {
-	            	minutes = String("0" + minutes)
-	            }
-	            if (seconds < 10) {
-	            	seconds = String("0" + seconds)
-	            }
-
-	            document.getElementById("countdown").innerHTML = days + ':' + hours + ':' + minutes + ':' + seconds;
-	        }
+	        	function showRemaining() {
+		            var now = new Date();
+		            var timeLeft = eventDate - now;
+		            
+		            var days = Math.floor(timeLeft / _day);
+		            var hours = Math.floor((timeLeft % _day) / _hour);
+		            var minutes = Math.floor((timeLeft % _hour) / _minute);
+		            var seconds = Math.floor((timeLeft % _minute) / _second);
+		            
+		            // Display a 0 for single digit values
+		            if (days < 10) {
+		            	days = String("0" + days)
+		            }
+		            if (hours < 10) {
+		            	hours = String("0" + hours)
+		            }
+		            if (minutes < 10) {
+		            	minutes = String("0" + minutes)
+		            }
+		            if (seconds < 10) {
+		            	seconds = String("0" + seconds)
+		            }
+	
+		            document.getElementById("countdown").innerHTML = days + ':' + hours + ':' + minutes + ':' + seconds;
+	        	}
+	        	// Audio
+			var needMusicStart = true;
+			var badAudio = document.getElementById("badAudio");
+			
+			badAudio.onplaying = function() {
+				needMusicStart = false;
+				console.log("Music started.");
+			}
+			
+			function startMusic() {
+			    // Start Audio if need to
+			    if (needMusicStart) {
+			    	badAudio.play();
+			    }
+			}
+			
 
 		</script>
 	</body>
